@@ -5,6 +5,7 @@ import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { ListReclamationComponent } from './modules/admin/dashboards/list-reclamation/list-reclamation.component';
 import { AddReclamationComponent } from './modules/admin/dashboards/add-reclamation/add-reclamation.component';
+import { UpdateReclamationComponent } from './modules/admin/dashboards/update-reclamation/update-reclamation.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -86,6 +87,7 @@ export const appRoutes: Route[] = [
                 {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
                 { path: 'listreclamation', component:ListReclamationComponent },
                 { path: 'addrec', component:AddReclamationComponent },
+                { path: 'updaterec/:id', component: UpdateReclamationComponent },
 
 
             ]},
