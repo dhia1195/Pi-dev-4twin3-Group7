@@ -3,6 +3,8 @@ import { initialDataResolver } from 'app/app.resolvers';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
+import { ListReclamationComponent } from './modules/admin/dashboards/list-reclamation/list-reclamation.component';
+import { AddReclamationComponent } from './modules/admin/dashboards/add-reclamation/add-reclamation.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -62,6 +64,7 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'home', loadChildren: () => import('app/modules/landing/home/home.routes')},
         ]
+        
     },
 
     // Admin routes
@@ -81,6 +84,10 @@ export const appRoutes: Route[] = [
                 {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
                 {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
                 {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
+                { path: 'listreclamation', component:ListReclamationComponent },
+                { path: 'addrec', component:AddReclamationComponent },
+
+
             ]},
 
             // Apps

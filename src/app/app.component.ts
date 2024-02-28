@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -6,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
     templateUrl: './app.component.html',
     styleUrls  : ['./app.component.scss'],
     standalone : true,
-    imports    : [RouterOutlet],
+    imports    : [RouterOutlet,HttpClientModule],
 })
 export class AppComponent
 {
@@ -14,6 +15,6 @@ export class AppComponent
      * Constructor
      */
     constructor()
-    {
+    {HttpClientModule
     }
 }
