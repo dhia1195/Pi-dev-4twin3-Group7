@@ -15,7 +15,7 @@ export class ReclamationService {
   async create(
     createReclamationDto: CreateReclamationDto,
   ): Promise<Reclamation> {
-    console.log("added with success");
+    console.log("reclamation added with success");
     const createdReclamation = new this.ReclamationModel(createReclamationDto);
     return createdReclamation.save();
   }
