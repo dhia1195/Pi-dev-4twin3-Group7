@@ -1,4 +1,4 @@
-/* Style pour le formulaire de réclamation */
+/* Style pour le formulaire */
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -24,10 +24,23 @@ input[type="date"] {
     border-radius: 5px;
 }
 
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Permet de redimensionner verticalement */
+}
+
 .invalid-feedback {
     color: #dc3545;
 }
 
+.alert {
+    margin-top: 20px;
+}
+
+/* Style pour les boutons */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -37,14 +50,13 @@ input[type="date"] {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    background-color: #007bff;
+}
+
+.btn-primary {
     color: #fff;
+    background-color: #007bff;
 }
 
-.btn:hover {
+.btn-primary:hover {
     background-color: #0056b3;
-}
-
-.alert {
-    margin-top: 20px;
 }

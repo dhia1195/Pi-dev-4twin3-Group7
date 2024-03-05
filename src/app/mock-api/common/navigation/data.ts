@@ -18,10 +18,17 @@ export const defaultNavigation: FuseNavigationItem[] = [
             },
             {
                 id   : 'dashboards.listreclamation',
-                title: 'list',
+                title: 'List Reclamation',
                 type : 'basic',
                 icon : 'heroicons_outline:clipboard-document-check',
                 link : '/dashboards/listreclamation',
+            },
+            {
+                id   : 'dashboards.listoffre',
+                title: 'List Offre',
+                type : 'basic',
+                icon : 'heroicons_outline:clipboard-document-check',
+                link : '/dashboards/listoffre',
             },
             {
                 id   : 'dashboards.analytics',
