@@ -3,15 +3,15 @@ import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 
 export const OffreSchema = new mongoose.Schema({
-  title: String,
-  description: String,
+  reduction: Number,
+  condition: Number,
   dateD: Date,
   dateF:Date,
 });
 
 export interface Offre extends Document {
-  title: string;
-  description: string;
+  reduction: number;
+  condition: number;
   dateD: Date;
   dateF:Date,
 
