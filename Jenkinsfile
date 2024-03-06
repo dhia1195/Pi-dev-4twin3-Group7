@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        registryCredentials = "nexus"
+        registry = "192.168.33.10:8083"
+    }
 
     stages {
         stage('Install dependencies') {
@@ -32,6 +37,16 @@ pipeline {
                     def scannerHome = tool 'scanner'
                     withSonarQubeEnv {
                         sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    docker.withRegistry("http://${registry}", registryCredentials) {
+                        sh('docker push $registry/nodemongoapp:5.0')
                     }
                 }
             }
