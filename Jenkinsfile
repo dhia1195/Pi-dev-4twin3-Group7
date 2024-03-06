@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         registryCredentials = "nexus"
-        registry = "192.168.56.130:8081"
+        registry = "192.168.56.130:8083"
     }
 
     stages {
