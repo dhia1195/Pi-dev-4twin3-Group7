@@ -2,9 +2,8 @@ pipeline {
     agent any
     
     environment {
-        registryCredentials = credentials('nexus') // Assuming 'nexus' is the ID of your Jenkins credentials for Docker registry
-        registry = "192.168.33.10:8083"
-        token = registryCredentials.token
+        registryCredentials = "nexus"
+        registry = "192.168.56.130:8083"
     }
 
     stages {
@@ -42,12 +41,12 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Deploy to Nexus') {
             steps {
                 script {
-                    docker.withRegistry("http://${registry}", tokenCredentialId: 'nexus') {
-                        sh 'docker push $registry/nodemongoapp:5.0'
+                    docker.withRegistry("http://${registry}", registryCredentials) {
+                        sh('docker push $registry/nodemongoapp:5.0')
                     }
                 }
             }
