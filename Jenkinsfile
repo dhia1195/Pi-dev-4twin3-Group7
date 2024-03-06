@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Install dependencies') {
             steps {
@@ -10,18 +10,29 @@ pipeline {
             }
         }
         
-        stage('Unit Test') {
+        stage('Start application') {
             steps {
                 script {
-                    sh 'npm test'
+                    sh 'npm install mongoose'
                 }
             }
         }
         
-        stage('Build application') {
+        stage('Docker compose') {
             steps {
                 script {
-                    sh 'npm run build-dev'
+                    sh 'docker-compose build'
+                }
+            }
+        }
+        
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'scanner'
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
