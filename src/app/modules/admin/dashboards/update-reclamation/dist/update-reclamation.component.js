@@ -20,23 +20,28 @@ var UpdateReclamationComponent = /** @class */ (function () {
     }
     UpdateReclamationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.reclamationeForm = this.fb.group({
+        this.reclamationForm = this.fb.group({
             title: new forms_1.FormControl('', forms_1.Validators.required),
             description: new forms_1.FormControl('', forms_1.Validators.required),
             date: new forms_1.FormControl('', forms_1.Validators.required)
         });
-        this._id = this.activatedRoute.snapshot.params._id;
-        console.log(this._id);
-        this.reclamationService.getReclamationById(this._id).subscribe(function (data) {
-            console.log(data);
-            _this.reclamationeForm.patchValue({ title: data["title"] });
-            _this.reclamationeForm.patchValue({ description: data["description"] });
-            _this.reclamationeForm.patchValue({ date: data["date"] });
-            console.log("reclamation form here ", _this.reclamationeForm.value);
+        this._id = this.activatedRoute.snapshot.params.id;
+        console.log('this is id ', this._id);
+        this.reclamationService
+            .getReclamationById(this._id)
+            .subscribe(function (data) {
+            console.log('this is data ', data);
+            _this.reclamationForm.patchValue({ title: data['title'] });
+            _this.reclamationForm.patchValue({
+                description: data['description']
+            });
+            _this.reclamationForm.patchValue({ date: data['date'] });
+            console.log('reclamation form here ', _this.reclamationForm.value);
         });
     };
     UpdateReclamationComponent.prototype.updateReclamation = function () {
         var _this = this;
+        console.log(this.reclamationForm);
         if (this.reclamationForm.valid) {
             var reclamationData = this.reclamationForm.value;
             reclamationData._id = this._id; // Assuming _id is obtained and stored correctly
@@ -44,7 +49,7 @@ var UpdateReclamationComponent = /** @class */ (function () {
                 console.log("Update success:", data);
                 _this.modifierAvecSucces = true;
                 _this.reclamationForm.reset();
-                _this.router.navigate(["listreclamation"]);
+                _this.router.navigate(["dashboards/listreclamation"]);
             }, function (error) {
                 console.error("Error updating reclamation:", error);
                 // Handle error accordingly, e.g., show error message

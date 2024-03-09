@@ -18,7 +18,7 @@ export class ReclamationService {
     return this._http.get(this.url);
   }
   public getReclamationById(_id: string) {
-    return this._http.get(`${this.url}${_id}`);
+    return this._http.get(`${this.url}/${_id}`);
   }
   public addReclamation(reclamation: any) {
     return this._http.post(this.url + "", reclamation);

@@ -8,6 +8,7 @@ import { AddReclamationComponent } from './modules/admin/dashboards/add-reclamat
 import { UpdateReclamationComponent } from './modules/admin/dashboards/update-reclamation/update-reclamation.component';
 import { AddOffreComponent } from './modules/admin/dashboards/add-offre/add-offre.component';
 import { ListOffreComponent } from './modules/admin/dashboards/list-offre/list-offre.component';
+import { UpdateOffreComponent } from './modules/admin/dashboards/update-offre/update-offre.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -90,6 +91,7 @@ export const appRoutes: Route[] = [
                 { path: 'listreclamation', component:ListReclamationComponent },
                 { path: 'addrec', component:AddReclamationComponent },
                 { path: 'updaterec/:id', component: UpdateReclamationComponent },
+                { path: 'updateoffre/:id', component: UpdateOffreComponent },
                 { path: 'listoffre', component:ListOffreComponent },
                 { path: 'addoffre', component:AddOffreComponent },
 

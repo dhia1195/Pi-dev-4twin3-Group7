@@ -20,8 +20,8 @@ ajoutAvecSucces: boolean = false;
 
 ngOnInit(): void {
     this.offreForm = this.fb.group({
-        title: ['', [Validators.minLength(3), Validators.required]],
-        description: ['', [Validators.minLength(3), Validators.required]],
+        reduction: ['', [Validators.minLength(3), Validators.required]],
+        condition: ['', [Validators.minLength(3), Validators.required]],
         dateD: ['', [Validators.minLength(3), Validators.required]],
         dateF: ['', [Validators.minLength(3), Validators.required]],
 

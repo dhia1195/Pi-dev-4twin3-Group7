@@ -1,56 +1,56 @@
 <div class="container">
     <form [formGroup]="offreForm" (ngSubmit)="addOffre()">
         <div class="form-group">
-            <label for="title">Titre</label>
+            <label for="reduction">Reduction</label>
             <input
-                formControlName="title"
+                formControlName="reduction"
                 type="text"
                 class="form-control"
-                id="title"
+                id="reduction"
                 placeholder="Exemple de saisie"
             />
             <div
                 *ngIf="
-                    offreForm.get('title').invalid &&
-                    (offreForm.get('title').touched ||
-                        offreForm.get('title').dirty)
+                    offreForm.get('reduction').invalid &&
+                    (offreForm.get('reduction').touched ||
+                        offreForm.get('reduction').dirty)
                 "
                 class="text-danger"
             >
-                <div *ngIf="offreForm.get('title').errors?.required">
+                <div *ngIf="offreForm.get('reduction').errors?.required">
                     Le nom est requis.
                 </div>
-                <div *ngIf="offreForm.get('title').errors?.minlength">
+                <div *ngIf="offreForm.get('reduction').errors?.minlength">
                     Le nom doit comporter au moins 3 caractères.
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="condition">Condition</label>
             <input
-                formControlName="description"
+                formControlName="condition"
                 type="text"
                 class="form-control"
-                id="description"
+                id="condition"
                 placeholder="Exemple de saisie"
             />
             <div
                 *ngIf="
-                    offreForm.get('description').invalid &&
-                    (offreForm.get('description').touched ||
-                        offreForm.get('description').dirty)
+                    offreForm.get('condition').invalid &&
+                    (offreForm.get('condition').touched ||
+                        offreForm.get('condition').dirty)
                 "
                 class="text-danger"
             >
                 <div
-                    *ngIf="offreForm.get('description').errors?.required"
+                    *ngIf="offreForm.get('condition').errors?.required"
                 >
-                    La description est requise.
+                    La condition est requise.
                 </div>
                 <div
-                    *ngIf="offreForm.get('description').errors?.minlength"
+                    *ngIf="offreForm.get('condition').errors?.minlength"
                 >
-                    La description doit comporter au moins 3 caractères.
+                    La condition doit comporter au moins 3 caractères.
                 </div>
             </div>
         </div>

@@ -23,13 +23,13 @@ var ListOffreComponent = /** @class */ (function () {
     function ListOffreComponent(offreService) {
         this.offreService = offreService;
         this.searchTerm = '';
-        this.displayedColumns = ['title', 'description', 'date debut', 'date fin', 'action'];
+        this.displayedColumns = ['reduction', 'condition', 'date debut', 'date fin', 'action'];
         this.dataSource = [];
     }
     ListOffreComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.offreService.getAllOffre().subscribe(function (data) {
-            _this.reclamation = data;
+            _this.offre = data;
             _this.dataSource = data;
             console.log(data);
         });

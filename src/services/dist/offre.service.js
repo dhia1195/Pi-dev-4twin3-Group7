@@ -19,7 +19,7 @@ var OffreService = /** @class */ (function () {
         return this._http.get(this.url);
     };
     OffreService.prototype.getOffreById = function (_id) {
-        return this._http.get("" + this.url + _id);
+        return this._http.get(this.url + "/" + _id);
     };
     OffreService.prototype.addOffre = function (offre) {
         return this._http.post(this.url + "", offre);

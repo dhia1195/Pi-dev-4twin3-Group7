@@ -10,6 +10,7 @@ var add_reclamation_component_1 = require("./modules/admin/dashboards/add-reclam
 var update_reclamation_component_1 = require("./modules/admin/dashboards/update-reclamation/update-reclamation.component");
 var add_offre_component_1 = require("./modules/admin/dashboards/add-offre/add-offre.component");
 var list_offre_component_1 = require("./modules/admin/dashboards/list-offre/list-offre.component");
+var update_offre_component_1 = require("./modules/admin/dashboards/update-offre/update-offre.component");
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -83,6 +84,7 @@ exports.appRoutes = [
                     { path: 'listreclamation', component: list_reclamation_component_1.ListReclamationComponent },
                     { path: 'addrec', component: add_reclamation_component_1.AddReclamationComponent },
                     { path: 'updaterec/:id', component: update_reclamation_component_1.UpdateReclamationComponent },
+                    { path: 'updateoffre/:id', component: update_offre_component_1.UpdateOffreComponent },
                     { path: 'listoffre', component: list_offre_component_1.ListOffreComponent },
                     { path: 'addoffre', component: add_offre_component_1.AddOffreComponent },
                 ] },

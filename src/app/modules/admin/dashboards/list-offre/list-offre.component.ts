@@ -36,17 +36,17 @@ import { OffreService } from 'services/offre.service';
 })
 export class ListOffreComponent {
 
-  reclamation: any;
+  offre: any;
   searchTerm: string = '';
 
-  displayedColumns: string[] = ['title', 'description', 'date debut','date fin', 'action'];
+  displayedColumns: string[] = ['reduction', 'condition', 'date debut','date fin', 'action'];
   dataSource = [];
 
   constructor(private offreService: OffreService) {}
 
   ngOnInit(): void {
       this.offreService.getAllOffre().subscribe((data: any) => {
-          this.reclamation = data;
+          this.offre = data;
           this.dataSource=data;
           console.log(data);
       });

@@ -18,8 +18,8 @@ var AddOffreComponent = /** @class */ (function () {
     }
     AddOffreComponent.prototype.ngOnInit = function () {
         this.offreForm = this.fb.group({
-            title: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]],
-            description: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]],
+            reduction: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]],
+            condition: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]],
             dateD: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]],
             dateF: ['', [forms_1.Validators.minLength(3), forms_1.Validators.required]]
         });

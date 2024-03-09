@@ -18,7 +18,7 @@ export class OffreService {
     return this._http.get(this.url);
   }
   public getOffreById(_id: string) {
-    return this._http.get(`${this.url}${_id}`);
+    return this._http.get(`${this.url}/${_id}`);
   }
   public addOffre(offre: any) {
     return this._http.post(this.url + "", offre);
