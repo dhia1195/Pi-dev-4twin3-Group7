@@ -5,7 +5,7 @@ export const UserSchema = new mongoose.Schema({
      name: String,
      number:Number,
      birthD: Date,
-     email: String,
+     email: {type :String, unique: "true"},
      password: String,
      role: String,
      state: Boolean,

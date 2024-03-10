@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export class CreateUserDto {
   readonly name: string;
   readonly number: number;
