@@ -46,7 +46,7 @@ pipeline {
      steps{  
          script {
 
-             docker.withRegistry("https://"+registry, registryCredentials ) {
+             docker.withRegistry("http://"+registry, registryCredentials ) {
             sh('docker push $registry/nodemongoapp:6.0 ')
           }
         }
