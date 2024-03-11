@@ -19,18 +19,15 @@ pipeline {
             }
         }
 
-        stage('Docker compose') {
+         stage('SonarQube Analysis') {
             steps {
-                sh 'docker-compose build'
-            }
-        }
-
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner'
+                script {
+                    def scannerHome = tool 'scanner'
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
-            }
+
         }
 
         stage('Docker build') {
@@ -48,4 +45,5 @@ pipeline {
             }
         }
     }
+}
 }
