@@ -1,56 +1,51 @@
 pipeline {
     agent any
-    
+
     environment {
-         registryCredentials = "nexus"
+        registryCredentials = "nexus"
         registry = "192.168.56.130:8083"
     }
 
     stages {
         stage('Install dependencies') {
             steps {
-                script {
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
-        
+
         stage('Start application') {
             steps {
-                script {
-                    sh 'npm install mongoose'
-                }
+                sh 'npm install mongoose'
             }
         }
-        
+
         stage('Docker compose') {
             steps {
-                script {
-                    sh 'docker-compose build'
-                }
+                sh 'docker-compose build'
             }
         }
-        
+
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    def scannerHome = tool 'scanner'
-                    withSonarQubeEnv {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner'
                 }
             }
         }
 
-        stage('Deploy  to Nexus') {
-     steps{  
-         script {
-
-             docker.withRegistry("http://"+registry, registryCredentials ) {
-            sh('docker push $registry/nodemongoapp:5.0 ')
-          }
+        stage('Docker build') {
+            steps {
+                sh 'docker build -t dhia2204/PiDev:1.0.0 .'
+            }
         }
-      }
+
+        stage('Docker push') {
+            steps {
+                sh '''
+                    docker login -u dhia2204 -p dhiaboudali
+                    docker push dhia2204/PiDev:1.0.0
+                '''
+            }
         }
     }
 }
