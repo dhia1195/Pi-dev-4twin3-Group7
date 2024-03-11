@@ -32,7 +32,7 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                sh 'docker build -t dhia2204/PiDev:1.0.0 .'
+                sh 'docker build -t dhia2204/pidev:1.0.0 .'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sh '''
                     docker login -u dhia2204 -p dhiaboudali
-                    docker push dhia2204/PiDev:1.0.0
+                    docker push dhia2204/pidev:1.0.0
                 '''
             }
         }
