@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-         stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
                     def scannerHome = tool 'scanner'
@@ -27,7 +27,7 @@ pipeline {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
-
+            }
         }
 
         stage('Docker build') {
@@ -45,5 +45,4 @@ pipeline {
             }
         }
     }
-}
 }
