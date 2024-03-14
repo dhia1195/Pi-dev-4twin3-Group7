@@ -19,8 +19,6 @@ pipeline {
             }
         }
 
-        
-
         stage('Build Application') {
             steps {
                 // Change directory to where package.json is located
@@ -30,16 +28,18 @@ pipeline {
                 }
             }
         }
+
         stage('SonarQube Analysis') {
-            steps{
+            steps {
+                // Change directory to where package.json is located
                 dir('backend') {
                     def scannerHome = tool 'scanner'
-                     withSonarQubeEnv {
-                         sh "${scannerHome}/bin/sonar-scanner"
-                            }
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
-}
+            }
+        }
 
         stage('Unit Test') {
             steps {
