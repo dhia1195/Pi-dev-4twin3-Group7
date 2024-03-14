@@ -32,7 +32,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Change directory to where package.json is located
-                dir('backend') {
+                script {
                     def scannerHome = tool 'scanner'
                     withSonarQubeEnv {
                         sh "${scannerHome}/bin/sonar-scanner"
