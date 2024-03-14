@@ -9,15 +9,15 @@ describe('UserController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        MongooseModule.forFeature([
-          {
-            name: 'User',
-            schema: UserSchema,
-          },
-        ]),
-        JwtModule.register({ secret: 'aziz' }),
-      ],
+      // imports: [
+      //   MongooseModule.forFeature([
+      //     {
+      //       name: 'User',
+      //       schema: UserSchema,
+      //     },
+      //   ]),
+      //   JwtModule.register({ secret: 'aziz' }),
+      // ],
       controllers: [UserController],
       providers: [UserService],
     }).compile();
