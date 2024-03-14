@@ -36,6 +36,7 @@ pipeline {
                     script {
                         def scannerHome = tool 'scanner'
                         withSonarQubeEnv {
+                            sh "echo 'sonar.projectKey=nodeapp' >> ${scannerHome}/conf/sonar-scanner.properties"
                             sh "${scannerHome}/bin/sonar-scanner"
                         }
                     }
