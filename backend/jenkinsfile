@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('GIT') {
+         stage('Checkout') {
             steps {
-                           echo 'Pulling code from git . . .'
-                git branch :"user",
-                url:"https://github.com/dhia1195/Pi-dev-4twin3-Group7.git"
+                // Use the 'checkout scm' step to fetch the source code
+                checkout scm
             }
         }
         stage('Install dependencies') {
