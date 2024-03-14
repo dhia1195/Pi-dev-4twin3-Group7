@@ -29,6 +29,16 @@ pipeline {
             }
         }
 
+           stage('Building images (node and mongo)') {
+            steps{
+                dir('backend'){
+                    script {
+                        sh('docker-compose build')
+                    }               
+                }
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 // Change directory to where package.json is located
@@ -44,15 +54,7 @@ pipeline {
             }
         }
 
-        stage('Building images (node and mongo)') {
-            steps{
-                dir('backend'){
-                    script {
-                        sh('docker-compose build')
-                    }               
-                }
-            }
-        }
+     
 
         stage('Unit Test') {
             steps {
