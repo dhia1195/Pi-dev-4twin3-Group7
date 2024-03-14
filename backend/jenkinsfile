@@ -2,43 +2,34 @@ pipeline {
     agent any
 
     stages {
-         stage('Checkout') {
+        stage('Checkout') {
             steps {
                 // Use the 'checkout scm' step to fetch the source code
                 checkout scm
             }
         }
-        //  stage('Navigate to Directory') {
-        //     steps {
-        //         // Change directory to the desired location within the checked out branch
-        //         dir('backend') {
-        //             // Perform actions within the directory
-        //             sh 'ls' // List files in the directory as an example
-        //         }
-        //     }
-        // }
 
-        stage('Install dependencies') {
-            steps{
-                script {
-                sh('npm install')
-                        }
-                }
+        stage('Install Dependencies') {
+            steps {
+                // Install dependencies using npm
+                sh 'npm install'
             }
+        }
+
         stage('Unit Test') {
-            steps{
-                script {
-                    sh('npm test')
-                    }
-                }
-                }
-    stage('Build application') {
-            steps{
-                script {
-                sh('npm run build-dev')
-                    }
-                }
+            steps {
+                // Run unit tests
+                sh 'npm test'
             }
-    }
-}
+        }
 
+        stage('Build Application') {
+            steps {
+                // Build the application
+                sh 'npm run build-dev'
+            }
+        }
+    }
+
+    // You can add post-build actions here if needed
+}
