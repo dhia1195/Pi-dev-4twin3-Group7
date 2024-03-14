@@ -42,19 +42,27 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy to Nexus') {
+        stage('Docker push') {
             steps {
-                dir('backend') {
-                    // Push Docker image to Nexus
-                    script {
-                        docker.withRegistry("http://${registry}", registryCredentials) {
-                            sh "docker push ${registry}/nodemongoapp:6.0"
-                        }
-                    }
-                }
+                sh '''
+                    docker login -u azizjellazi -p aziz28063828
+                    docker push azizjellazi/pidev:1.0.0
+                '''
             }
         }
+
+        // stage('Deploy to Nexus') {
+        //     steps {
+        //         dir('backend') {
+        //             // Push Docker image to Nexus
+        //             script {
+        //                 docker.withRegistry("http://${registry}", registryCredentials) {
+        //                     sh "docker push ${registry}/nodemongoapp:6.0"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('SonarQube Analysis') {
             steps {
