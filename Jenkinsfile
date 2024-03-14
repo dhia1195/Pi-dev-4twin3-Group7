@@ -44,5 +44,13 @@ pipeline {
                 '''
             }
         }
+
+        stage('Pull Docker image') {
+            steps {
+                script {
+                    docker.image('dhia2204/pidev:1.0.0').pull()
+                }
+            }
+        }
     }
 }
