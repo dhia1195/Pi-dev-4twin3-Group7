@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh '''
                     docker login -u azizjellazi -p aziz28063828
-                    docker push azizjellazi/pidev:1.0.0
+                    docker push azizjellazi/node:16-alpine
                 '''
             }
         }
