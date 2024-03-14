@@ -4,29 +4,38 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Use the 'checkout scm' step to fetch the source code
+                // Checkout the source code
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Install dependencies using npm
-                sh 'npm install'
+                // Change directory to where package.json is located
+                dir('backend') {
+                    // Install dependencies using npm
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Unit Test') {
             steps {
-                // Run unit tests
-                sh 'npm test'
+                // Change directory to where package.json is located
+                dir('backend') {
+                    // Run unit tests
+                    sh 'npm test'
+                }
             }
         }
 
         stage('Build Application') {
             steps {
-                // Build the application
-                sh 'npm run build-dev'
+                // Change directory to where package.json is located
+                dir('backend') {
+                    // Build the application
+                    sh 'npm run build-dev'
+                }
             }
         }
     }
