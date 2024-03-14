@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-    registryCredentials = "nexus"
-    registry = "192.168.50.10:8081"
+        registryCredentials = credentials('nexus') // Assuming you have Jenkins credentials configured for Nexus
+        registry = "192.168.50.10:8081"
     }
     stages {
         stage('Checkout') {
@@ -32,33 +32,35 @@ pipeline {
             }
         }
 
-           stage('Building images (node and mongo)') {
-            steps{
-                dir('backend'){
+        stage('Building images (node and mongo)') {
+            steps {
+                dir('backend') {
+                    // Build Docker images
                     script {
-                        sh('docker-compose build')
-                    }               
+                        sh 'docker-compose build'
+                    }
                 }
             }
         }
+
         stage('Deploy to Nexus') {
-            steps{
-                dir('backend'){
+            steps {
+                dir('backend') {
+                    // Push Docker image to Nexus
                     script {
-                        docker.withRegistry("http://"+registry,
-                        registryCredentials ) {
-                        sh('docker push $registry/nodemongoapp:5.0 ')
+                        docker.withRegistry("http://${registry}", registryCredentials) {
+                            sh "docker push ${registry}/nodemongoapp:5.0"
                         }
                     }
                 }
-}
-}
-
+            }
+        }
 
         stage('SonarQube Analysis') {
             steps {
                 // Change directory to where package.json is located
                 dir('backend') {
+                    // Run SonarQube analysis
                     script {
                         def scannerHome = tool 'scanner'
                         withSonarQubeEnv {
@@ -70,8 +72,6 @@ pipeline {
             }
         }
 
-     
-
         stage('Unit Test') {
             steps {
                 // Change directory to where package.json is located
@@ -82,6 +82,5 @@ pipeline {
             }
         }
     }
-
     // You can add post-build actions here if needed
 }
