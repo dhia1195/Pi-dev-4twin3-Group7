@@ -8,6 +8,16 @@ pipeline {
                 checkout scm
             }
         }
+         stage('Navigate to Directory') {
+            steps {
+                // Change directory to the desired location within the checked out branch
+                dir('backend') {
+                    // Perform actions within the directory
+                    sh 'ls' // List files in the directory as an example
+                }
+            }
+        }
+
         stage('Install dependencies') {
             steps{
                 script {
