@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registryCredentials = 'nexus' // Assuming you have Jenkins credentials configured for Nexus
+        registryCredentials = credentials('nexus') // Assuming you have Jenkins credentials configured for Nexus
         registry = "192.168.50.10:8081"
     }
     stages {
