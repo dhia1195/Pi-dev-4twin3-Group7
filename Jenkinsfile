@@ -49,6 +49,7 @@ pipeline {
             steps {
                 script {
                     docker.image('dhia2204/pidev:1.0.0').pull()
+                    sh 'docker-compose up -d'
                 }
             }
         }
