@@ -2,6 +2,7 @@ import { Delete, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Ventes, VentesDocument } from './ventes.schema';
 import { Date, Model } from 'mongoose';
+import { Clients } from 'src/clients/clients.schema';
 
 @Injectable()
 export class VentesService {
@@ -10,19 +11,17 @@ export class VentesService {
 
     constructor(@InjectModel(Ventes.name) private venteModel: Model<VentesDocument>){}
 
-    async ajouterVente(produitV: string, dateV: Date, statut_paiement: boolean, id_client: string): Promise<Ventes> {
-        const createdVente = new this.venteModel({
-            produitV,
-            dateV,
-            statut_paiement,
-            id_client,
-
-            
-            
-        });
-    
-        return createdVente.save();
-    }
+    async ajouterVente(id_produit: string, dateV: Date, statut_paiement: boolean, clientId: string): Promise<Ventes> {
+      const createdVente = new this.venteModel({
+          id_produit,
+          dateV,
+          statut_paiement,
+          clientId, // Utiliser seulement l'ID du client ici
+          
+      });
+  
+      return createdVente.save();
+  }
 
     async getAllVentes(): Promise<Ventes[]> {
         const allClients = await this.venteModel.find().exec();

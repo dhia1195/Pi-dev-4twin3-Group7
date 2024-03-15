@@ -1,0 +1,24 @@
+<table>
+    <thead>
+      <tr>
+        <th>Produit ID</th>
+        <th>Date</th>
+        <th>Statut Paiement</th>
+        <th>Client ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vente of ventesList">
+        <td>{{ vente.id_produit }}</td>
+        <td>{{ vente.dateV | date:'medium' }}</td>
+        <td>{{ vente.statut_paiement ? 'Paid' : 'Not Paid' }}</td>
+        <td>{{ vente.clientId }}</td> 
+
+        <td>
+          <button (click)="deleteVente(vente._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

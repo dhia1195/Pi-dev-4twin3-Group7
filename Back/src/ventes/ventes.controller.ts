@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { VentesService } from './ventes.service';
 import { Ventes } from './ventes.schema';
 import { Date } from 'mongoose';
+import { Clients } from 'src/clients/clients.schema';
 
 
 @Controller('ventes')
@@ -11,16 +12,13 @@ export class VentesController {
 
     @Post('ajouter')
     async ajouterVente(
-        @Body('produitV') produitV: string,
+        @Body('id_produit') id_produit: string,
         @Body('dateV') dateV: Date,
         @Body('statut_paiement') statut_paiement: boolean,
-        @Body('id_client') id_client: string,
-
-        
-        
+        @Body('clientId') clientId: string, // Modification ici
         
     ) {
-        const nouveauVentes = await this.ventesService.ajouterVente(produitV, dateV, statut_paiement, id_client);
+        const nouveauVentes = await this.ventesService.ajouterVente(id_produit, dateV, statut_paiement, clientId);
         return { vente: nouveauVentes };
     }
     @Get('getall')

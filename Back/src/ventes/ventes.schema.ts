@@ -1,30 +1,23 @@
-import {  Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Date, Document } from 'mongoose';
 
 export type VentesDocument = Ventes & Document;
 
-
-  
-
 @Schema()
-export class Ventes{
-  
+export class Ventes {
 
   @Prop()
-  produitV: string;
+  id_produit: string;
 
-  @Prop({type:Date})
+  @Prop({ type: Date })
   dateV: Date;
 
   @Prop()
   statut_paiement: boolean;
-  @Prop()
-  id_client: string;
-  
 
-  
+  @Prop() // Modification ici pour accepter uniquement l'ID du client
+  clientId: string;
+
 }
-
-
 
 export const VentesSchema = SchemaFactory.createForClass(Ventes);
