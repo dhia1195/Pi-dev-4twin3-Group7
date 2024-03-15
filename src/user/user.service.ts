@@ -49,12 +49,12 @@ export class UserService {
     const user = await this.userModel.findOne({ email });
     if (user) {
       if (bcrypt.compare(mdp, user.password)) {
-        return this.jwtService.sign({ payload: user });
+        return {message : this.jwtService.sign({ payload: user })};
       } else {
-        return 'mot de passe incorrect';
+        return {message : 'mot de passe incorrect'};
       }
     } else {
-      return 'email inexistant';
+      return {message:'email inexistant'};
     }
   }
   async verifyToken(token: string): Promise<User> {
@@ -65,3 +65,4 @@ export class UserService {
     }
   }
 }
+//
