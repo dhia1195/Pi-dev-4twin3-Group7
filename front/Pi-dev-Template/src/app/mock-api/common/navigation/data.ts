@@ -10,15 +10,15 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon    : 'heroicons_outline:home',
         children: [
             {
-                id   : 'dashboards.profile',
-                title: 'Project',
+                id   : 'employe.profile',
+                title: 'Profile',
                 type : 'basic',
                 icon : 'heroicons_outline:clipboard-document-check',
-                link : '/dashboards/project',
+                link : '/profile',
             },
            
         ],
-    },
+    }
     
     ,
     {

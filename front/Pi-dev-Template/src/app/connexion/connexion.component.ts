@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { UserService } from 'app/service/user.service';
+import { messages } from '../mock-api/common/messages/data';
 
 @Component({
   selector: 'app-connexion',
@@ -64,7 +65,21 @@ export class ConnexionComponent implements OnInit{
     // this.showAlert = false;
     var user=this.signInForm.value
     this.userS.connexion(user.email,user.password).subscribe({
-      next : (data:any)=> alert(data.message)
+      next : (data:any)=>{
+        if(data.message !== "mot de passe incorrect" && data.message !== "email inexistant"){
+          this.userS.decode(data.message).subscribe({
+            next : (dataN:any)=>{
+              localStorage.setItem(dataN.payload.role,data.message)
+            this._router.navigate(['profile'])
+            }
+          }) 
+          
+        }
+        else{
+        alert(data.message)
+        }
+       
+      } 
     })
   
   }

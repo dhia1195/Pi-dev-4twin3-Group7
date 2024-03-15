@@ -5,6 +5,9 @@ import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { ResolverS } from './service/resolveS.service';
+import { ProfileComponent } from './profile/profile.component';
+import { ResolverE } from './service/resolveE.service';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -20,7 +23,35 @@ export const appRoutes: Route[] = [
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
     {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'dashboards/project'},
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver,
+            condition:ResolverE
+        },
+         children: [
+        {path: 'profile', component:ProfileComponent},
+       
+        
+    ]}
+
+    ,
     
+    {
+        path: '',
+        resolve : {condition:ResolverS},
+        component: LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children: [
+            {path: 'inscription', component : InscriptionComponent},
+            {path: 'login', component : ConnexionComponent}
+        ]
+    },
 
     // Auth routes for guests
     {
@@ -37,8 +68,7 @@ export const appRoutes: Route[] = [
             {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.routes')},
             {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.routes')},
             {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.routes')},
-            {path: 'inscription', component : InscriptionComponent},
-            {path: 'login', component : ConnexionComponent}
+            
         ]
     },
 
@@ -79,7 +109,7 @@ export const appRoutes: Route[] = [
             initialData: initialDataResolver
         },
         children: [
-
+           
             // Dashboards
             {path: 'dashboards', children: [
                 {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},

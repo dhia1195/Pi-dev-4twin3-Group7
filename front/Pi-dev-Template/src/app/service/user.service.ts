@@ -16,6 +16,12 @@ export class UserService {
    connexion(email:string,password:string){
     return this._http.get(this.apiUrl+"/connexion/"+email+"/"+password);
    }
+   decode(token:string){
+    return this._http.get(this.apiUrl+"/decode/"+token);
+   }
+   modify(body:any,id:number){
+    return this._http.patch(this.apiUrl+"/"+id,body)
+   }
   //  getMenuById(id:number){
   //   return this._http.get(this.apiUrl+"/"+id);
   //  }
