@@ -8,6 +8,12 @@ import { AddReclamationComponent } from './modules/admin/dashboards/add-reclamat
 import { UpdateReclamationComponent } from './modules/admin/dashboards/update-reclamation/update-reclamation.component';
 import { AddOffreComponent } from './modules/admin/dashboards/add-offre/add-offre.component';
 import { ListOffreComponent } from './modules/admin/dashboards/list-offre/list-offre.component';
+import { ListefournisseurComponent } from './modules/admin/dashboards/listefournisseur/listefournisseur.component';
+import { AddfournisseurComponent } from './modules/admin/dashboards/addfournisseur/addfournisseur.component';
+import { UpdatefournisseurComponent } from './modules/admin/dashboards/updatefournisseur/updatefournisseur.component';
+import { ListachatComponent } from './modules/admin/dashboards/listachat/listachat.component';
+import { AddachatComponent } from './modules/admin/dashboards/addachat/addachat.component';
+import { UpdateachatComponent } from './modules/admin/dashboards/updateachat/updateachat.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -92,6 +98,13 @@ export const appRoutes: Route[] = [
                 { path: 'updaterec/:id', component: UpdateReclamationComponent },
                 { path: 'listoffre', component:ListOffreComponent },
                 { path: 'addoffre', component:AddOffreComponent },
+                { path: 'listfournisseur', component:ListefournisseurComponent },
+                {path :'addfournisseur', component:AddfournisseurComponent},
+                {path :'updateFournisseur/:id', component:UpdatefournisseurComponent},
+                {path : 'listachats' , component:ListachatComponent},
+                {path : 'addachat' , component:AddachatComponent},
+                {path :'updateAchat/:id', component:UpdateachatComponent},
+
 
 
             ]},

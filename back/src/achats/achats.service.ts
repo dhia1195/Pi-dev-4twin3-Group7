@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AchatDocument, Achats } from './achats.schema';
 import { Model } from 'mongoose';
+import { Fournisseurs } from 'src/fournisseurs/fournisseurs.schema';
 
 
 
@@ -10,7 +11,7 @@ import { Model } from 'mongoose';
 export class AchatService {
     constructor(@InjectModel(Achats.name) private AchatModel: Model<AchatDocument>){}
 
-    async ajouterAchat(article: string, quantity: number, prix_unitaire: number, date: Date, paiement: string): Promise<Achats> {
+    async ajouterAchat(article: string, quantity: number, prix_unitaire: number, date: Date, paiement: string,fournisseurId:string): Promise<Achats> {
         // Calculer le montant total
         const montant_total = quantity * prix_unitaire;
     
@@ -21,7 +22,8 @@ export class AchatService {
           prix_unitaire,
           montant_total,
           date,
-          paiement
+          paiement,
+          fournisseurId
         });
     
         // Sauvegarder et retourner l'achat créé
@@ -29,8 +31,8 @@ export class AchatService {
       }
     
       async getAllAchats(): Promise<Achats[]> {
-        const allAchats = await this.AchatModel.find().exec();
-        return allAchats;
+        const allFournisseurs = await this.AchatModel.find().exec();
+        return allFournisseurs;
       }
 
       async updateAchat(id: string, updateData: Partial<Achats>): Promise<Achats> {

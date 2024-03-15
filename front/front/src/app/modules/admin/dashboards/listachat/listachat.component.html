@@ -1,0 +1,30 @@
+
+<table>
+    <thead>
+      <tr>
+        <th>Produit ID</th>
+        <th>Date</th>
+        <th>Statut Paiement</th>
+        <th>Client ID</th>
+        <th>Action</th>
+        <th>Action</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let achat of achatsList">
+        <td>{{ achat.article }}</td>
+        <td>{{ achat.quantity  }}</td>
+        <td>{{ achat.prix_unitaire }}</td>
+        <td>{{ achat.date | date:'medium'}}</td> 
+        <td>{{ achat.paiement }}</td> 
+        <td>{{ achat.fournisseurId }}</td> 
+
+        <td>
+          <button (click)="deleteAchat(achat._id)">Delete</button>
+          <button (click)="updateAchat(achat)" class="btn btn-primary">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ 

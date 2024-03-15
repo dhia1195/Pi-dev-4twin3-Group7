@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { ListachatComponent } from './modules/admin/dashboards/listachat/listachat.component';
 
 
 
@@ -15,11 +17,14 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     NgModule,
     RouterModule,
-    FormGroup,
+    ReactiveFormsModule,
+    BrowserModule,
+    ListachatComponent
     
   ],
   declarations: [
     AppComponent,
+    
     
    
   ],

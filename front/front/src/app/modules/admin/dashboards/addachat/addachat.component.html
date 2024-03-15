@@ -1,0 +1,29 @@
+<form [formGroup]="achatForm" (ngSubmit)="addAchat()">
+    <h2>Add New Vente</h2>
+    <div>
+      <label for="article">article</label>
+      <input type="text" id="article" formControlName="article" />
+    </div>
+    <div>
+        <label for="quantity">quantity</label>
+        <input type="number" id="quantity" formControlName="quantity" />
+      </div>
+      <div>
+        <label for="prix_unitaire">prix unitaire</label>
+        <input type="number" id="prix_unitaire" formControlName="prix_unitaire" />
+      </div>
+    <div>
+      <label for="date">Date:</label>
+      <input type="date" id="date" formControlName="date" />
+    </div>
+    <div>
+      <label for="paiement">Statut Paiement:</label>
+      <input type="text" id="paiement" formControlName="paiement" />
+    </div>
+    <!-- Supprimer le formGroupName pour les détails du client -->
+    <div>
+      <label for="fournisseurId">Client ID:</label>
+      <input type="text" id="fournisseurId" formControlName="fournisseurId" />
+    </div>
+    <button type="submit">Add Vente</button>
+  </form>

@@ -45,7 +45,7 @@ export class UpdateReclamationComponent {
       console.log("reclamation form here ", this.reclamationeForm.value);
     });
   }
-
+   
 
 
   updateReclamation(): void {

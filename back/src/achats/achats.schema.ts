@@ -1,5 +1,6 @@
 import {  Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Fournisseurs } from 'src/fournisseurs/fournisseurs.schema';
 
 export type AchatDocument = Achats & Document;
 
@@ -29,6 +30,9 @@ export class Achats{
   @Prop()
   paiement: string;
 
+  
+  @Prop()
+  fournisseurId: string;
 }
 
 

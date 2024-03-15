@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { AchatService } from './achats.service';
 import { Achats } from './achats.schema';
+import { Fournisseurs } from 'src/fournisseurs/fournisseurs.schema';
 
 @Controller('achats')
 export class AchatsController { constructor(private readonly AchatService: AchatService) {}
@@ -11,9 +12,10 @@ async ajouterSprint(
     @Body('prix_unitaire') prix_unitaire: number,
     @Body('date') date: Date,
     @Body('paiement') paiement:string,
+    @Body('fournisseurId') fournisseurId: string,
    
 ) {
-    const nouveauAchat = await this.AchatService.ajouterAchat(article, quantity, prix_unitaire, date,paiement);
+    const nouveauAchat = await this.AchatService.ajouterAchat(article, quantity, prix_unitaire, date,paiement,fournisseurId);
     return { achat: nouveauAchat };
 
 }

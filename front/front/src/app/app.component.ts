@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -7,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
     templateUrl: './app.component.html',
     styleUrls  : ['./app.component.scss'],
     standalone : true,
-    imports    : [RouterOutlet,HttpClientModule],
+    imports    : [RouterOutlet,HttpClientModule,CommonModule],
 })
 export class AppComponent
 {

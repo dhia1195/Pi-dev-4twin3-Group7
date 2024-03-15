@@ -10,13 +10,14 @@ import { AchatsController } from './achats/achats.controller';
 import { Fournisseurs, FournisseursSchema } from './fournisseurs/fournisseurs.schema';
 import { AchatSchema, Achats } from './achats/achats.schema';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URI),
     MongooseModule.forFeature([{ name: Fournisseurs.name, schema: FournisseursSchema}]),
     MongooseModule.forFeature([{ name: Achats.name, schema: AchatSchema}]),
-    
+   
   ],
   controllers: [AppController, FournisseursController, AchatsController ],
   providers: [AppService, FournisseursService, AchatService],
