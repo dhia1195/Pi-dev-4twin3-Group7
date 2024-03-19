@@ -48,13 +48,14 @@ export class UserService {
   async connexion(email: string, mdp: string): Promise<any> {
     const user = await this.userModel.findOne({ email });
     if (user) {
-      if (bcrypt.compare(mdp, user.password)) {
-        return {message : this.jwtService.sign({ payload: user })};
+      const comp = await bcrypt.compare(mdp, user.password);
+      if (comp) {
+        return { message: this.jwtService.sign({ payload: user }) };
       } else {
-        return {message : 'mot de passe incorrect'};
+        return { message: 'mot de passe incorrect' };
       }
     } else {
-      return {message:'email inexistant'};
+      return { message: 'email inexistant' };
     }
   }
   async verifyToken(token: string): Promise<User> {
@@ -65,4 +66,3 @@ export class UserService {
     }
   }
 }
-//
