@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,6 +13,7 @@ import { VentesModule } from './ventes/ventes.module';
 import { ClientsModule } from './clients/clients.module';
 import { FournisseursModule } from './fournisseurs/fournisseurs.module';
 
+
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/pidev'),
@@ -24,6 +26,7 @@ import { FournisseursModule } from './fournisseurs/fournisseurs.module';
     VentesModule,
     ClientsModule,
     FournisseursModule,
+ 
   ],
   controllers: [AppController],
   providers: [AppService],
