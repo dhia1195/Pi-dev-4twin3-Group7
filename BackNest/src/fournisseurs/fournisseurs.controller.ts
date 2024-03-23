@@ -18,7 +18,7 @@ async ajouterSprint(
     const nouveauFournisseur = await this.fournisseursService.ajouterFournisseur(nom, adresse, numero, email, type);
     return { fournisseur: nouveauFournisseur };}
 
-@Get('all')
+@Get('getall')
 async getAllFounisserus(){
     const allFournisseurs = await this.fournisseursService.getAllFournisseurs();
     return {fournisseurs : allFournisseurs};
@@ -36,7 +36,7 @@ async updateFournisseur(@Param('id') id:string, @Body() updateData: Partial<Four
     return { message: 'fournisseur deleted successfully' };
   }
 
-@Get('getfournisseurbyid/:id')
+@Get('getbyid/:id')
   async getFournisseurById(@Param('id') id: string) {
     return this.fournisseursService.getFournisseurById(id);
   }

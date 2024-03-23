@@ -12,12 +12,12 @@ export class VentesService {
 
     constructor(@InjectModel(Ventes.name) private venteModel: Model<VentesDocument>){}
 
-    async ajouterVente(id_produit: string, dateV: Date, statut_paiement: boolean, clientId: string): Promise<Ventes> {
+    async ajouterVente(id_produit: string, dateV: Date, statut_paiement: boolean, client: Clients): Promise<Ventes> {
       const createdVente = new this.venteModel({
           id_produit,
           dateV,
           statut_paiement,
-          clientId, // Utiliser seulement l'ID du client ici
+          client, // Utiliser seulement l'ID du client ici
           
       });
   

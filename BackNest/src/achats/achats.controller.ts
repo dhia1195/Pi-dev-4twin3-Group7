@@ -22,7 +22,7 @@ async ajouterSprint(
 }
 
 
-@Get('all')
+@Get('getall')
 async getAllAchats(){
     const allAchats = await this.AchatService.getAllAchats();
     return {achat : allAchats};
@@ -41,7 +41,7 @@ async updateAchat(@Param('id') id:string, @Body() updateData: Partial<Achats>){
     return { message: 'achat deleted successfully' };
   }
 
-@Get('getachatbyid/:id')
+@Get('getbyid/:id')
   async getAchatById(@Param('id') id: string) {
     return this.AchatService.getAchatById(id);
   }

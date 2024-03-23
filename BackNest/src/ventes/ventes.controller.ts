@@ -16,10 +16,10 @@ export class VentesController {
         @Body('id_produit') id_produit: string,
         @Body('dateV') dateV: Date,
         @Body('statut_paiement') statut_paiement: boolean,
-        @Body('clientId') clientId: string, // Modification ici
+        @Body('client') client: Clients, // Modification ici
         
     ) {
-        const nouveauVentes = await this.ventesService.ajouterVente(id_produit, dateV, statut_paiement, clientId);
+        const nouveauVentes = await this.ventesService.ajouterVente(id_produit, dateV, statut_paiement, client);
         return { vente: nouveauVentes };
     }
     @Get('getall')

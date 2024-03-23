@@ -18,7 +18,7 @@ async ajouterSprint(
     const nouveauProduits = await this.produitsService.ajouterProduit(nom,prix,quantite,categorie,offre);
     return { produits: nouveauProduits };}
 
-@Get('all')
+@Get('getall')
 async getAllProduits(){
     const allproduits = await this.produitsService.getAllProduits();
     return {produits : allproduits};
@@ -36,7 +36,7 @@ async updateProduits(@Param('id') id:string, @Body() updateData: Partial<Produit
     return { message: 'Produits deleted successfully' };
   }
 
-@Get('getProduitsbyid/:id')
+@Get('getbyid/:id')
   async getProduitsById(@Param('id') id: string) {
     return this.produitsService.getProduitById(id);
   }
