@@ -1,4 +1,40 @@
-import { Controller } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { FacturesService } from './factures.service';
+import { Factures } from './factures.schema';
 
 @Controller('factures')
-export class FacturesController {}
+export class FacturesController {
+     constructor(private readonly factureService: FacturesService) {}
+
+@Post('ajouter')
+async ajouterVente(
+    @Body('customerOrSupplierId') customerOrSupplierId: string,
+    @Body('facture_date') facture_date: Date,
+    @Body('total_amount') total_amount: number,
+    @Body('facture_type') facture_type: string, 
+    
+) {
+    const nouveauVentes = await this.factureService.ajouterVente(customerOrSupplierId, facture_date, total_amount, facture_type);
+    return { vente: nouveauVentes };
+}
+@Get('getall')
+async getAllVentes() {
+  const allVentes = await this.factureService.getAllFactures();
+  return { ventes: allVentes};
+}
+@Delete('delete/:id')
+async deleteFactures(@Param('id') id: string) {
+await this.factureService.deleteFactures(id);
+return { message: 'vente deleted successfully' };
+}
+@Patch('update/:id')
+async updateFactures(@Param('id') id: string, @Body() updateData: Partial<Factures>) {
+const updatedVente = await this.factureService.updateFactures(id, updateData);
+return { Vente: updatedVente };
+}
+@Get('getbyid/:id')
+async getById(@Param('id') id: string) {
+return this.factureService.getById(id);
+}
+}
