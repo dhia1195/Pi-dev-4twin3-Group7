@@ -1,18 +1,25 @@
 /* eslint-disable prettier/prettier */
-import * as mongoose from 'mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Document } from 'mongoose';
+import { Produits } from 'src/produits/produits.schema';
 
-export const OffreSchema = new mongoose.Schema({
-  reduction: Number,
-  condition: Number,
-  dateD: Date,
-  dateF:Date,
-});
-
-export interface Offre extends Document {
+@Schema()
+export class Offre extends Document {
+  @Prop()
   reduction: number;
-  condition: number;
-  dateD: Date;
-  dateF:Date,
 
+  @Prop()
+  condition: number;
+  @Prop()
+  name: string;
+  @Prop()
+  dateD: Date;
+
+  @Prop()
+  dateF: Date;
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Produits' }] })
+  produits: Produits[];
 }
+
+export const OffreSchema = SchemaFactory.createForClass(Offre);

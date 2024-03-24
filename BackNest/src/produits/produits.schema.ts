@@ -25,9 +25,9 @@ export class Produits{
   
   @Prop({ type: String, enum: Object.values(Categorie)})
   categorie: Categorie;
+  
 
-  @Prop()
-  offre: number;
+
 
 }
 

@@ -13,9 +13,11 @@ async ajouterVente(
     @Body('facture_date') facture_date: Date,
     @Body('total_amount') total_amount: number,
     @Body('facture_type') facture_type: string, 
+    @Body('real_total_amount') real_total_amount: number,
+
     
 ) {
-    const nouveauVentes = await this.factureService.ajouterVente(customerOrSupplierId, facture_date, total_amount, facture_type);
+    const nouveauVentes = await this.factureService.ajouterVente(customerOrSupplierId, facture_date, total_amount, facture_type,real_total_amount);
     return { vente: nouveauVentes };
 }
 @Get('getall')

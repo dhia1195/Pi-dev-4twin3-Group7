@@ -17,9 +17,10 @@ export class VentesService {
           id_produit,
           dateV,
           statut_paiement,
-          client, // Utiliser seulement l'ID du client ici
+          client, 
           
       });
+    
   
       return createdVente.save();
   }

@@ -16,13 +16,21 @@ export class FacturesService {
     facture_date: Date,
     total_amount: number,
     facture_type: string,
+    real_total_amount: number,
   ): Promise<Factures> {
     const createdVente = new this.factureModel({
         customerOrSupplierId,
         facture_date,
         total_amount,
         facture_type, 
+        real_total_amount,
     });
+
+//update real total amount if offre exist
+      //check if offre exist by product 
+      //count by client and product =numbervente 
+      //compare numbervente between condition 
+      //make reduction 
 
     return createdVente.save();
   }

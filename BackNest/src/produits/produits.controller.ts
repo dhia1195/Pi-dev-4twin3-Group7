@@ -12,10 +12,10 @@ async ajouterSprint(
     @Body('prix') prix: number,
     @Body('quantite') quantite: number,
     @Body('categorie') categorie: string,
-    @Body('offre') offre: number,
+ 
    
 ) {
-    const nouveauProduits = await this.produitsService.ajouterProduit(nom,prix,quantite,categorie,offre);
+    const nouveauProduits = await this.produitsService.ajouterProduit(nom,prix,quantite,categorie);
     return { produits: nouveauProduits };}
 
 @Get('getall')
