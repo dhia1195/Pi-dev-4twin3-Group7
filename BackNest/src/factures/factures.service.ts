@@ -4,11 +4,13 @@ import { FactureDocument } from 'src/Factures/Factures.schema';
 import { Factures } from './factures.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Offre } from 'src/offre/entities/offre.entity';
 
 @Injectable()
 export class FacturesService {
   constructor(
-    @InjectModel(Factures.name) private factureModel: Model<FactureDocument>,
+    @InjectModel(Factures.name) private factureModel: Model<Factures>,
+    @InjectModel(Offre.name) private offreModel: Model<Offre>,
   ) {}
 
   async ajouterVente(
@@ -16,24 +18,34 @@ export class FacturesService {
     facture_date: Date,
     total_amount: number,
     facture_type: string,
-    real_total_amount: number,
+    produits: any[],
   ): Promise<Factures> {
+    // Créer une nouvelle vente
     const createdVente = new this.factureModel({
-        customerOrSupplierId,
-        facture_date,
-        total_amount,
-        facture_type, 
-        real_total_amount,
+      customerOrSupplierId,
+      facture_date,
+      total_amount,
+      facture_type,
+      produits,
+      real_total_amount: total_amount, // Set real_total_amount initially to total_amount
     });
-
-//update real total amount if offre exist
-      //check if offre exist by product 
-      //count by client and product =numbervente 
-      //compare numbervente between condition 
-      //make reduction 
-
+  
+    // Vérifier si une offre existe pour les produits achetés
+    const offre = await this.offreModel.findOne({ produits }).exec();
+  
+    // Si une offre existe et que le nombre de ventes correspond aux conditions de l'offre, appliquer la réduction
+    if (offre) {
+      const nombreVentes = await this.factureModel.countDocuments({ customerOrSupplierId, produits }).exec();
+      if (nombreVentes >= offre.condition) {
+        const reduction = (offre.reduction / 100) * total_amount;
+        createdVente.real_total_amount = total_amount - reduction;
+      }
+    }
+  
+    // Enregistrer la vente dans la base de données
     return createdVente.save();
   }
+  
 
   async getAllFactures(): Promise<Factures[]> {
     const allFactures = await this.factureModel.find().exec();

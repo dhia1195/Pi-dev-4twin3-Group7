@@ -13,7 +13,7 @@ export class VentesController {
 
     @Post('ajouter')
     async ajouterVente(
-        @Body('id_produit') id_produit: string,
+        @Body('Produits') id_produit: string,
         @Body('dateV') dateV: Date,
         @Body('statut_paiement') statut_paiement: boolean,
         @Body('client') client: Clients, // Modification ici

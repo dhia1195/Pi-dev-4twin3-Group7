@@ -4,6 +4,8 @@ import { FactureSchema, Factures } from './factures.schema';
 import { FacturesController } from './factures.controller';
 import { FacturesService } from './factures.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { Offre, OffreSchema } from 'src/offre/entities/offre.entity';
+import { OffreModule } from 'src/offre/offre.module';
 
 @Module({
     imports: [
@@ -14,7 +16,9 @@ import { MongooseModule } from '@nestjs/mongoose';
           schema: FactureSchema,
         },
       ]),
-      MongooseModule.forFeature([{ name: Factures.name, schema: FactureSchema}])
+      MongooseModule.forFeature([{ name: Factures.name, schema: FactureSchema}]),
+      MongooseModule.forFeature([{ name: 'Offre', schema: OffreSchema }]), 
+
     ],
     controllers: [FacturesController],
     providers: [FacturesService],

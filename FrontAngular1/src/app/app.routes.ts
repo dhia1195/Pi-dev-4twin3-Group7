@@ -77,6 +77,11 @@ export const appRoutes: Route[] = [
             
         ]
     },
+    {
+        path: 'chat',
+        loadChildren: () => import('./chat/chat.module')
+          .then(m => m.ChatModule)
+      },
 
     // Auth routes for authenticated users
     {
@@ -128,6 +133,7 @@ export const appRoutes: Route[] = [
                 { path: 'updateoffre/:id', component: UpdateOffreComponent },
                 { path: 'listoffre', component:ListOffreComponent },
                 { path: 'addoffre', component:AddOffreComponent },
+
                 
             ]},
 

@@ -1,15 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Date, Document, Types } from 'mongoose';
+import mongoose, { Date, Document, Types } from 'mongoose';
 import { Clients } from 'src/clients/clients.schema';
+import { Produits } from 'src/produits/produits.schema';
 
 export type VentesDocument = Ventes & Document;
 
 @Schema()
 export class Ventes {
 
-  @Prop()
-  id_produit: string;
 
   @Prop({ type: Date })
   dateV: Date;
@@ -17,10 +16,11 @@ export class Ventes {
   @Prop()
   statut_paiement: boolean;
 
- // @Prop() // Modification ici pour accepter uniquement l'ID du client
   @Prop({ type: Types.ObjectId, ref: 'Clients' })
   client: Clients;
-
+ 
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Produits' }] })
+  produits: Produits[];
 }
 
 export const VentesSchema = SchemaFactory.createForClass(Ventes);

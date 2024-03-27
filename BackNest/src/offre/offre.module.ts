@@ -9,12 +9,12 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     MongooseModule.forFeature([
       {
-        // eslint-disable-next-line prettier/prettier
+    
         name: "offre",
         schema: OffreSchema
      }])
     ],
-  providers: [OffreService, OffreService],
+  providers: [OffreService],
   controllers: [OffreController]
 })
 export class OffreModule {}

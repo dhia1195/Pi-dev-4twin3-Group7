@@ -1,15 +1,20 @@
 /* eslint-disable prettier/prettier */
-import * as mongoose from 'mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { User } from 'src/user/entities/user.entity';
 
-export const ReclamationSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  date: Date,
-});
-
-export interface Reclamation extends Document {
+@Schema()
+export class Reclamation {
+  @Prop({ required: true })
   title: string;
+
+  @Prop({ required: true })
   description: string;
+
+  @Prop({ required: true })
   date: Date;
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }] })
+  user: User[];
 }
+
+export const ReclamationSchema = SchemaFactory.createForClass(Reclamation);

@@ -39,7 +39,7 @@ export class ListOffreComponent {
   offre: any;
   searchTerm: string = '';
 
-  displayedColumns: string[] = ['reduction', 'condition', 'date debut','date fin', 'action'];
+  displayedColumns: string[] = ['reduction','name','condition', 'date debut','date fin','produits', 'action'];
   dataSource = [];
 
   constructor(private offreService: OffreService) {}

@@ -7,19 +7,25 @@ import { Factures } from './factures.schema';
 export class FacturesController {
      constructor(private readonly factureService: FacturesService) {}
 
-@Post('ajouter')
-async ajouterVente(
-    @Body('customerOrSupplierId') customerOrSupplierId: string,
-    @Body('facture_date') facture_date: Date,
-    @Body('total_amount') total_amount: number,
-    @Body('facture_type') facture_type: string, 
-    @Body('real_total_amount') real_total_amount: number,
-
-    
-) {
-    const nouveauVentes = await this.factureService.ajouterVente(customerOrSupplierId, facture_date, total_amount, facture_type,real_total_amount);
-    return { vente: nouveauVentes };
-}
+     @Post('ajouter')
+     async ajouterVente(
+       @Body('customerOrSupplierId') customerOrSupplierId: string,
+       @Body('facture_date') facture_date: Date,
+       @Body('total_amount') total_amount: number,
+       @Body('facture_type') facture_type: string,
+       @Body('produits') produits: any[], // Ajoutez la liste des produits achetés
+     ) {
+       const nouvelleFacture = await this.factureService.ajouterVente(
+         customerOrSupplierId,
+         facture_date,
+         total_amount,
+         facture_type,
+         produits
+       );
+       return { facture: nouvelleFacture };
+     }
+   
+ 
 @Get('getall')
 async getAllVentes() {
   const allVentes = await this.factureService.getAllFactures();
