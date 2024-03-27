@@ -14,13 +14,19 @@ export class Produits{
   
 
   @Prop()
+  reference: string;
+
+  @Prop()
   nom: string;
 
   @Prop()
   prix: number;
 
   @Prop()
-  quantite: string;
+  quantite: number;
+
+  @Prop()
+  image: string;
   
   @Prop({ type: String, enum: Object.values(Categorie)})
   categorie: Categorie;

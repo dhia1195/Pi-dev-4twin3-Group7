@@ -1,5 +1,7 @@
 import {  Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Achats } from 'src/achats/achats.schema';
+import { Ventes } from 'src/ventes/ventes.schema';
 
 export type FactureDocument = Factures & Document;
 

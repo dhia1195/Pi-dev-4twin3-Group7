@@ -120,7 +120,6 @@ export class ECommerceInventoryMockApi
                         endIndex  : end - 1,
                     };
                 }
-
                 // Return the response
                 return [
                     200,

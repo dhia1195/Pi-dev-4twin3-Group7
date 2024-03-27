@@ -31,6 +31,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 link : '/dashboards/listoffre',
             },
             {
+                id: 'dashboards.listproduits',
+                title: 'Produits',
+                type: 'basic',
+                icon: 'heroicons_outline:clipboard-document-check',
+                link: '/dashboards/listproduits'
+            },
+            {
                 id   : 'dashboards.analytics',
                 title: 'Analytics',
                 type : 'basic',

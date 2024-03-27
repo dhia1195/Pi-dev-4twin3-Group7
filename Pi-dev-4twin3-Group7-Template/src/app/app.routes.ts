@@ -8,6 +8,7 @@ import { AddReclamationComponent } from './modules/admin/dashboards/add-reclamat
 import { UpdateReclamationComponent } from './modules/admin/dashboards/update-reclamation/update-reclamation.component';
 import { AddOffreComponent } from './modules/admin/dashboards/add-offre/add-offre.component';
 import { ListOffreComponent } from './modules/admin/dashboards/list-offre/list-offre.component';
+import { ListProduitsComponent } from './modules/admin/dashboards/list-produits/list-produits.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -87,6 +88,7 @@ export const appRoutes: Route[] = [
                 {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
                 {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
                 {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
+                {path: 'listproduits', component:ListProduitsComponent },
                 { path: 'listreclamation', component:ListReclamationComponent },
                 { path: 'addrec', component:AddReclamationComponent },
                 { path: 'updaterec/:id', component: UpdateReclamationComponent },

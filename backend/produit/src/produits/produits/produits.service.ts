@@ -9,13 +9,15 @@ export class ProduitsService {
     constructor(@InjectModel(Produits.name) private ProduitsModel: Model<ProduitDocument>){}
 
 
-async ajouterProduit(nom: string, prix: number, quantite: number,categorie:string,offre:number): Promise<Produits> {
+async ajouterProduit(reference: string, nom: string, prix: number, quantite: number,categorie:string,offre:number,image:string): Promise<Produits> {
         const createdProduits = new this.ProduitsModel({
+            reference,
             nom,
             prix,
             quantite,
             categorie,
-            offre,
+            image,
+            offre
         });
     
         return createdProduits.save();

@@ -11,7 +11,8 @@ import { ProduitsService } from './produits/produits/produits.service';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URI),
-    MongooseModule.forFeature([{ name: Produits.name, schema: ProduitSchema}])
+    MongooseModule.forFeature([{ name: Produits.name, schema: ProduitSchema}]),
+    
   ],
   controllers: [AppController, ProduitsController],
   providers: [AppService, ProduitsService],

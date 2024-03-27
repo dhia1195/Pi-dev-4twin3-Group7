@@ -201,6 +201,8 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
      */
     ngAfterViewInit(): void
     {
+        
+
         if ( this._sort && this._paginator )
         {
             // Set the initial sort
@@ -291,6 +293,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     closeDetails(): void
     {
         this.selectedProduct = null;
+        console.log(this.pagination);
     }
 
     /**

@@ -10,6 +10,7 @@ var add_reclamation_component_1 = require("./modules/admin/dashboards/add-reclam
 var update_reclamation_component_1 = require("./modules/admin/dashboards/update-reclamation/update-reclamation.component");
 var add_offre_component_1 = require("./modules/admin/dashboards/add-offre/add-offre.component");
 var list_offre_component_1 = require("./modules/admin/dashboards/list-offre/list-offre.component");
+var list_produits_component_1 = require("./modules/admin/dashboards/list-produits/list-produits.component");
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -80,6 +81,7 @@ exports.appRoutes = [
                     { path: 'analytics', loadChildren: function () { return Promise.resolve().then(function () { return require('app/modules/admin/dashboards/analytics/analytics.routes'); }); } },
                     { path: 'finance', loadChildren: function () { return Promise.resolve().then(function () { return require('app/modules/admin/dashboards/finance/finance.routes'); }); } },
                     { path: 'crypto', loadChildren: function () { return Promise.resolve().then(function () { return require('app/modules/admin/dashboards/crypto/crypto.routes'); }); } },
+                    { path: 'listproduits', component: list_produits_component_1.ListProduitsComponent },
                     { path: 'listreclamation', component: list_reclamation_component_1.ListReclamationComponent },
                     { path: 'addrec', component: add_reclamation_component_1.AddReclamationComponent },
                     { path: 'updaterec/:id', component: update_reclamation_component_1.UpdateReclamationComponent },

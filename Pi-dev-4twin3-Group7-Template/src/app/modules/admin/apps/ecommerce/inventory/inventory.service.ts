@@ -136,6 +136,7 @@ export class InventoryService
         }).pipe(
             tap((response) =>
             {
+                console.log('Products response:', response);
                 this._pagination.next(response.pagination);
                 this._products.next(response.products);
             }),
