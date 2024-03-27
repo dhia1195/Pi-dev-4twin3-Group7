@@ -13,6 +13,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { OffreService } from 'app/service/offre.service';
 import { ProduitService } from 'app/service/produit.service';
 import { forkJoin } from 'rxjs';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-list-offre',
@@ -51,7 +53,7 @@ export class ListOffreComponent {
         this.offreService.getAllOffre().subscribe((data: any) => {
           this.offre = data;
           this.dataSource = data;
-      
+          
           // Array to hold all observables for fetching product details
           const observables: any[] = [];
       
@@ -71,7 +73,7 @@ export class ListOffreComponent {
                 // Assign produitData to produitsdetails property of this.offre[d]
                 this.offre[d].produitsdetails = produitDataArray[dataIndex++];
               }
-            }
+                         }
           });
         });
       }
@@ -94,5 +96,48 @@ export class ListOffreComponent {
           });
       }
   }
+  generatePDF() {
+    // Check if dataSource is empty
+    if (!this.dataSource || this.dataSource.length === 0) {
+      console.error('No data to generate PDF');
+      return;
+    }
+  
+    const documentDefinition = {
+      content: [
+        { text: 'Liste des Offres', style: 'header' }, // Add a header for the PDF content
+        {
+          // Table containing the offre data
+          table: {
+            headerRows: 1,
+            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto'], // Adjust column widths as needed
+            body: [
+              // Header row
+              ['Reduction', 'Name', 'Condition', 'Date Début', 'Date Fin', 'Produits'],
+              // Data rows
+              ...this.dataSource.map(offre => [
+                offre.reduction,
+                offre.name,
+                offre.condition,
+                offre.dateD,
+                offre.dateF,
+                (offre.produitsdetails && offre.produitsdetails.nom) ? offre.produitsdetails.nom : '' // Check if produitsdetails exists and has nom
+              ])
+            ]
+          }
+        }
+      ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true
+        }
+      }
+    };
+  
+    // Open the PDF in a new tab
+    pdfMake.createPdf(documentDefinition).open();
+  }
+  
 }    
 
