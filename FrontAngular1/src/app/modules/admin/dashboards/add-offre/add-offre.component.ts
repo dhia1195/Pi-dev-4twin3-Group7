@@ -29,12 +29,13 @@ export class AddOffreComponent {
         condition: ['', [Validators.minLength(3), Validators.required]],
         dateD: ['', [Validators.minLength(3), Validators.required]],
         dateF: ['', [Validators.minLength(3), Validators.required]],
-        produitId: ['', Validators.required], // Champ pour l'ID du produit
+        produits: ['', Validators.required], // Champ pour l'ID du produit
       });
   
       // Chargez la liste des produits lors de l'initialisation du composant
-      this.produitService.getAllProduits().subscribe((produits: any[]) => {
-        this.produitsList = produits;
+      this.produitService.getAllProduits().subscribe((produits: any) => {
+        console.log(produits.produits);
+        this.produitsList = produits.produits;
       });
     }
   

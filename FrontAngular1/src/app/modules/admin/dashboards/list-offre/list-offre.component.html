@@ -43,7 +43,11 @@
     <!-- produit Column -->
     <ng-container matColumnDef="produits">
         <th mat-header-cell *matHeaderCellDef>Produits</th>
-        <td mat-cell *matCellDef="let element">{{ element.produits }}</td>
+        <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.produitsdetails">
+                {{ element.produitsdetails.nom }}
+            </ng-container>
+        </td>
     </ng-container>
     <!-- Action Column -->
     <ng-container matColumnDef="action">

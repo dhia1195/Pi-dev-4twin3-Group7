@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { OffreService } from 'app/service/offre.service';
+import { ProduitService } from 'app/service/produit.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-list-offre',
@@ -42,15 +44,38 @@ export class ListOffreComponent {
   displayedColumns: string[] = ['reduction','name','condition', 'date debut','date fin','produits', 'action'];
   dataSource = [];
 
-  constructor(private offreService: OffreService) {}
+  constructor(private offreService: OffreService
+    ,private produitService:ProduitService) {}
 
-  ngOnInit(): void {
-      this.offreService.getAllOffre().subscribe((data: any) => {
+    ngOnInit(): void {
+        this.offreService.getAllOffre().subscribe((data: any) => {
           this.offre = data;
-          this.dataSource=data;
-          console.log(data);
-      });
-  }
+          this.dataSource = data;
+      
+          // Array to hold all observables for fetching product details
+          const observables: any[] = [];
+      
+          for (var d in this.offre) {
+            if (this.offre.hasOwnProperty(d)) {
+              const produitId = this.offre[d].produits[0];
+              // Push each observable to the observables array
+              observables.push(this.produitService.getProduitById(produitId));
+            }
+          }
+      
+          // Use forkJoin to wait for all observables to complete
+          forkJoin(observables).subscribe((produitDataArray: any[]) => {
+            let dataIndex = 0; // Index to track produitDataArray
+            for (var d in this.offre) {
+              if (this.offre.hasOwnProperty(d)) {
+                // Assign produitData to produitsdetails property of this.offre[d]
+                this.offre[d].produitsdetails = produitDataArray[dataIndex++];
+              }
+            }
+          });
+        });
+      }
+      
   deleteOffre(offre: any) {
       console.log("Avant suppression - ID de la offre :", offre._id);
       
