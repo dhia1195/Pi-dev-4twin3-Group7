@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OffreService } from 'app/service/offre.service';
+import { ProduitService } from 'app/service/produit.service';
 
 @Component({
   selector: 'app-update-offre',
@@ -13,9 +14,10 @@ import { OffreService } from 'app/service/offre.service';
 })
 export class UpdateOffreComponent {
   offreForm: FormGroup;
-
+  produitsList: any[] = [];
     constructor(
         private offreService: OffreService,
+        private produitService:ProduitService,
         private fb: FormBuilder,
         private router: Router,
         private activatedRoute: ActivatedRoute
@@ -24,54 +26,49 @@ export class UpdateOffreComponent {
     modifierAvecSucces: boolean = false;
 
     ngOnInit(): void {
-        this.offreForm = this.fb.group({
-          reduction: new FormControl('', Validators.required),
-          condition: new FormControl('', Validators.required),
-          dateD: new FormControl('', Validators.required),
-          dateF: new FormControl('', Validators.required),
-
+      this.offreForm = this.fb.group({
+        reduction: ['', Validators.required],
+        condition: ['', Validators.required],
+        dateD: ['', Validators.required],
+        dateF: ['', Validators.required],
+        produits: ['', Validators.required] // Add produits field to the form
+      });
+  
+      this._id = this.activatedRoute.snapshot.params.id;
+  
+      this.offreService.getOffreById(this._id).subscribe((data: any) => {
+        this.offreForm.patchValue({
+          reduction: data.reduction,
+          condition: data.condition,
+          dateD: data.dateD,
+          dateF: data.dateF,
+          produits: data.produits // Patch the produits field with the corresponding data
         });
-        this._id = this.activatedRoute.snapshot.params.id;
-        console.log('this is id ', this._id);
-
-        this.offreService
-            .getOffreById(this._id)
-            .subscribe((data) => {
-                console.log('this is data ', data);
-                this.offreForm.patchValue({ reduction: data['reduction'] });
-                this.offreForm.patchValue({condition: data['condition']});
-                this.offreForm.patchValue({ dateD: data['dateD'] });
-                this.offreForm.patchValue({ dateF: data['dateF'] });
-
-
-                console.log(
-                    'offre form here ',
-                    this.offreForm.value
-                );
-            });
+      });
+  
+      this.produitService.getAllProduits().subscribe((produits: any) => {
+        this.produitsList = produits.produits;
+      });
     }
-
+  
     updateOffre(): void {
-        console.log(this.offreForm);
-
-        if (this.offreForm.valid) {
-          const offreData = this.offreForm.value;
-          offreData._id = this._id; // Assuming _id is obtained and stored correctly
-
-          this.offreService.updateOffre(this._id, offreData).subscribe(
-            (data: any) => {
-              console.log("Update success:", data);
-              this.modifierAvecSucces = true;
-              this.offreForm.reset();
-              this.router.navigate(["dashboards/listoffre"]);
-            },
-            (error: any) => {
-              console.error("Error updating offre:", error);
-              // Handle error accordingly, e.g., show error message
-            }
-          );
-        } else {
-          // Form is invalid, handle accordingly
-        }
+      if (this.offreForm.valid) {
+        const offreData = this.offreForm.value;
+        offreData._id = this._id;
+  
+        this.offreService.updateOffre(this._id, offreData).subscribe(
+          (data: any) => {
+            console.log("Update success:", data);
+            this.modifierAvecSucces = true;
+            this.offreForm.reset();
+            this.router.navigate(["dashboards/listoffre"]);
+          },
+          (error: any) => {
+            console.error("Error updating offre:", error);
+          }
+        );
+      } else {
+        // Form is invalid, handle accordingly
+      }
     }
-}
+  }

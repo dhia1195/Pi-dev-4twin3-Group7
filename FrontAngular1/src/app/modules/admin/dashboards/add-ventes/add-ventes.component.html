@@ -1,0 +1,22 @@
+<form [formGroup]="addVenteForm" (ngSubmit)="addVente()">
+    <h2>Add New Vente</h2>
+    <div>
+      <label for="id_produit">id du produit:</label>
+      <input type="text" id="id_produit" formControlName="id_produit" />
+    </div>
+    <div>
+      <label for="dateV">Date:</label>
+      <input type="date" id="dateV" formControlName="dateV" />
+    </div>
+    <div>
+      <label for="statut_paiement">Statut Paiement:</label>
+      <input type="checkbox" id="statut_paiement" formControlName="statut_paiement" />
+    </div>
+    <!-- Supprimer le formGroupName pour les détails du client -->
+    <div>
+      <label for="clientId">Client ID:</label>
+      <input type="text" id="clientId" formControlName="clientId" />
+    </div>
+    <button type="submit">Add Vente</button>
+  </form>
+  

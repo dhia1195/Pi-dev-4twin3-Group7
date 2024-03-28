@@ -1,0 +1,43 @@
+<div class="container-fluid" style="width: 100%">
+  <div class="row">
+      <button
+          mat-flat-button
+          [routerLink]="'/dashboards/addclients'"
+          class="col-auto text-white"
+          style="background-color: rgb(83, 172, 83);"
+      >
+          <mat-icon>exposure_plus_1</mat-icon>
+          Add
+      </button>
+      
+  </div>
+  <div class="row">
+<table>
+    <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let clients of clientsList">
+        
+        <td>{{ clients.nom }}</td>
+        <td>{{ clients.prenom }}</td>
+        <td>{{ clients.adresse }}</td>
+        <td>{{ clients.email }}</td>
+        <td>{{ clients.numrTel }}</td>
+        <td>
+          <button [routerLink]="'/dashboards/updateclients/' + clients._id" class="btn btn-info btn-update">
+            Update
+        </button>
+            <button (click)="deleteClient(clients._id)">Delete</button>
+            
+          </td>
+      </tr>
+    </tbody>
+  </table>

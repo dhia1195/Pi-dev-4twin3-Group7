@@ -1,0 +1,42 @@
+<div class="container-fluid" style="width: 100%">
+  <div class="row">
+      <button
+          mat-flat-button
+          [routerLink]="'/dashboards/addventes'"
+          class="col-auto text-white"
+          style="background-color: rgb(83, 172, 83);"
+      >
+          <mat-icon>exposure_plus_1</mat-icon>
+          Add
+      </button>
+ 
+  </div>
+  <div class="row">
+<table>
+    <thead>
+      <tr>
+        <th>Produit ID</th>
+        <th>Date</th>
+        <th>Statut Paiement</th>
+        <th>Client ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vente of ventesList">
+        <td>{{ vente.id_produit }}</td>
+        <td>{{ vente.dateV | date:'medium' }}</td>
+        <td>{{ vente.statut_paiement ? 'Paid' : 'Not Paid' }}</td>
+        <td>{{ vente.clientId }}</td> 
+
+        <td>
+          <button [routerLink]="'/dashboards/updateventes/' + vente._id" class="btn btn-info btn-update">
+            Update
+        </button>
+          <button (click)="deleteVente(vente._id)">Delete</button>
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

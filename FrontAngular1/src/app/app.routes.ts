@@ -14,6 +14,12 @@ import { ListOffreComponent } from './modules/admin/dashboards/list-offre/list-o
 import { ListReclamationComponent } from './modules/admin/dashboards/list-reclamation/list-reclamation.component';
 import { UpdateOffreComponent } from './modules/admin/dashboards/update-offre/update-offre.component';
 import { UpdateReclamationComponent } from './modules/admin/dashboards/update-reclamation/update-reclamation.component';
+import { AddClientsComponent } from './modules/admin/dashboards/add-clients/add-clients.component';
+import { AddVentesComponent } from './modules/admin/dashboards/add-ventes/add-ventes.component';
+import { ListClientsComponent } from './modules/admin/dashboards/list-clients/list-clients.component';
+import { ListeVentesComponent } from './modules/admin/dashboards/liste-ventes/liste-ventes.component';
+import { UpdateClientsComponent } from './modules/admin/dashboards/update-clients/update-clients.component';
+import { UpdateVentesComponent } from './modules/admin/dashboards/update-ventes/update-ventes.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -133,6 +139,18 @@ export const appRoutes: Route[] = [
                 { path: 'updateoffre/:id', component: UpdateOffreComponent },
                 { path: 'listoffre', component:ListOffreComponent },
                 { path: 'addoffre', component:AddOffreComponent },
+                { path: 'addclients', component:AddClientsComponent },
+                { path: 'addventes', component:AddVentesComponent },
+                { path: 'listclients', component:ListClientsComponent },
+                { path: 'listventes', component:ListeVentesComponent },
+                { path: 'updateclients/:id', component:UpdateClientsComponent },
+                { path: 'updateventes/:id', component:UpdateVentesComponent },
+
+
+
+
+
+
 
                 
             ]},

@@ -50,6 +50,21 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:tag',
                 link: '/dashboards/listoffre',
             },
+            {
+                id: 'dashboards.listventes',
+                title: 'List Ventes',
+                type: 'basic',
+                icon: 'heroicons_outline:receipt-refund', 
+                link: '/dashboards/listventes',
+            },
+            
+            {
+                id: 'dashboards.listclients',
+                title: 'List Clients',
+                type: 'basic',
+                icon: 'heroicons_outline:user-group', 
+                link: '/dashboards/listclients',
+            },
             
             {
                 id   : 'dashboards.analytics',
