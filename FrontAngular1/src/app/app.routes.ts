@@ -20,6 +20,12 @@ import { ListClientsComponent } from './modules/admin/dashboards/list-clients/li
 import { ListeVentesComponent } from './modules/admin/dashboards/liste-ventes/liste-ventes.component';
 import { UpdateClientsComponent } from './modules/admin/dashboards/update-clients/update-clients.component';
 import { UpdateVentesComponent } from './modules/admin/dashboards/update-ventes/update-ventes.component';
+import { AddachatComponent } from './modules/admin/dashboards/addachat/addachat.component';
+import { AddfournisseurComponent } from './modules/admin/dashboards/addfournisseur/addfournisseur.component';
+import { ListachatComponent } from './modules/admin/dashboards/listachat/listachat.component';
+import { ListefournisseurComponent } from './modules/admin/dashboards/listefournisseur/listefournisseur.component';
+import { UpdateachatComponent } from './modules/admin/dashboards/updateachat/updateachat.component';
+import { UpdatefournisseurComponent } from './modules/admin/dashboards/updatefournisseur/updatefournisseur.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -145,6 +151,19 @@ export const appRoutes: Route[] = [
                 { path: 'listventes', component:ListeVentesComponent },
                 { path: 'updateclients/:id', component:UpdateClientsComponent },
                 { path: 'updateventes/:id', component:UpdateVentesComponent },
+                { path: 'addachats', component:AddachatComponent },
+                { path: 'addfournisseurs', component:AddfournisseurComponent },
+                { path: 'listachats', component:ListachatComponent },
+                { path: 'listfournisseurs', component:ListefournisseurComponent },
+                { path: 'updateachats/:id', component:UpdateachatComponent },
+                { path: 'updatefournisseurs/:id', component:UpdatefournisseurComponent },
+
+
+
+
+
+
+
 
 
 

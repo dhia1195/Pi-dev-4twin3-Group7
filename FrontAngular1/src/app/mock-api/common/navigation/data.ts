@@ -65,6 +65,24 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon: 'heroicons_outline:user-group', 
                 link: '/dashboards/listclients',
             },
+            {
+                id: "dashboards.listachats",
+                title: "List Achats",
+                type: "basic",
+                icon: "heroicons_outline:shopping-cart", 
+                link: "/dashboards/listachats"
+            }
+            ,
+            
+            {
+                id: "dashboards.listfournisseurs",
+                title: "List Fournisseurs",
+                type: "basic",
+                icon: "heroicons_outline:truck", 
+                link: "/dashboards/listfournisseurs"
+            }
+            ,
+            
             
             {
                 id   : 'dashboards.analytics',
