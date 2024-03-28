@@ -20,7 +20,6 @@ import { catchError, combineLatest, debounceTime, map, merge, Observable, startW
 import { ProduitService } from './produit.service';
 import { InventoryPagination } from './produit.types';
 import { InventoryProduct, Category } from './produit.types';
-import { now } from 'lodash';
 
 @Component({
   selector: 'app-list-produits',
@@ -121,7 +120,7 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
 
         this.products$ = this._produitService.products$;
         
-        this._produitService.getProducts(0, 10, 'name', 'asc', '').subscribe();
+        this._produitService.getProducts(0, 10, 'nom', 'asc', '').subscribe();
         
 
         // Subscribe to search input field value changes
@@ -323,9 +322,9 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
                     //console.log(product.id);
                     this._produitService.deleteProduct(product._id).subscribe(() =>
                     {
+                        this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
                         this.closeDetails();
                     });
-                //this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
             }
         });
     }
