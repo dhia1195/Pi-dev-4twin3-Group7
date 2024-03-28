@@ -57,6 +57,7 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
 
     products$: Observable<InventoryProduct[]>;
     categories = Object.values(Category);
+    productCreated : any;
 
     ngUnsubscribe = new Subject();
     flashMessage: 'success' | 'error' | null = null;
@@ -68,6 +69,7 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
     tagsEditMode: boolean = false;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     errorMessage: string;
+    noProductsFound: boolean = false;
 
     /**
      * Constructor
@@ -135,7 +137,6 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
                 }),
                 map(() =>
                 {
-                    console.log(this.pagination);
                     this.isLoading = false;
                 }),
             )
@@ -150,20 +151,26 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
         if (this.pagination == null){
             setTimeout(() => {
                 this.paginatorFunction();
-            }, 500);
+            }, 300);
         }
         else this.paginatorFunction();
        
     }
 
-    private paginatorFunction () {
+    paginatorFunction2() {
+        setTimeout(() => {
+            this.paginatorFunction();
+        }, 50);
+    }
+
+     paginatorFunction () {
         if ( this._sort && this._paginator )
         {
             // Set the initial sort
             this._sort.sort({
                 id          : 'nom',
                 start       : 'asc',
-                disableClear: true,
+                disableClear: false,
             });
 
             // Mark for check
@@ -196,6 +203,7 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
                 }),
             ).subscribe();
         }
+        this.noProductsFound = false;
     }
 
     /**
@@ -256,7 +264,7 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
      */
     createProduct(): void
     {
-        // Create the product
+
         this._produitService.createProduct().subscribe((newProduct) =>
         {
             // Go to new product
@@ -275,20 +283,16 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
      */
     updateSelectedProduct(): void
     {
-        // Get the product object
-        const product = this.selectedProductForm.getRawValue();
-        
+
+         const product = this.selectedProductForm.getRawValue();
 
         // Update the product on the server
         this._produitService.updateProduct(product._id, product).subscribe(() =>
-        {
-            console.log(product);
-            // Show a success message
-            
-            //this.closeDetails();
-            this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
-            this.showFlashMessage('success');
+        {   
+            this.closeDetails();
+            //this.showFlashMessage('success');
         });
+        this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
     }
 
     /**
@@ -314,16 +318,14 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
             if ( result === 'confirmed' )
             {
                 // Get the product object
-                const product = this.selectedProductForm.getRawValue();
-
-                // Delete the product on the server
-                console.log(product.id);
-                this._produitService.deleteProduct(product._id).subscribe(() =>
-                {
-                    // Close the details
-                    this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
-                    this.closeDetails();
-                });
+                    const product = this.selectedProductForm.getRawValue();
+                    // Delete the product on the server
+                    //console.log(product.id);
+                    this._produitService.deleteProduct(product._id).subscribe(() =>
+                    {
+                        this.closeDetails();
+                    });
+                //this._produitService.getProducts(0, 10, 'name', 'asc','').subscribe();
             }
         });
     }
@@ -359,4 +361,8 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
     {
         return item._id || index;
     }
+
+    handleTransitionFromNoProducts(): void {
+        this.noProductsFound = true;
+      }
 }

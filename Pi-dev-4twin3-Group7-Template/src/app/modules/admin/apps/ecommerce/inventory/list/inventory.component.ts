@@ -564,6 +564,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
             {
                 // Get the product object
                 const product = this.selectedProductForm.getRawValue();
+                console.log(product);
 
                 // Delete the product on the server
                 this._inventoryService.deleteProduct(product.id).subscribe(() =>

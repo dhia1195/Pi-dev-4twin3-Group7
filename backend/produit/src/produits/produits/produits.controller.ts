@@ -18,7 +18,8 @@ async ajouterSprint(
 ) {
     const nouveauProduits = await this.produitsService.ajouterProduit(reference,nom,prix,quantite,categorie,offre,image);
     
-    return { produits: nouveauProduits };}
+    return  nouveauProduits ;
+  }
 
 
 @Get('all')

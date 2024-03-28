@@ -6,7 +6,7 @@ import { ProduitService } from 'app/modules/admin/dashboards/list-produits/produ
 export default [
     {
         path     : '',
-        component: ListProduitsComponent,
+        component: ListProduitsComponent,   
         resolve  : {
             data: () => inject(ProduitService).getData(),
         },

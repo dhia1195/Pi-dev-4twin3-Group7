@@ -28,7 +28,7 @@ async getAllProduits(): Promise<Produits[]> {
       }
 
 async updateProduit(id: string, updateData: Partial<Produits>): Promise<Produits> {
-        const updatedProduit = await this.ProduitsModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+        const updatedProduit = await this.ProduitsModel.findByIdAndUpdate(id, updateData).exec();
         if (!updatedProduit) {
           // Handle the case where the sprint with the given ID was not found
           throw new Error('Produit not found');

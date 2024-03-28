@@ -117,9 +117,16 @@ export class ProduitService {
   {
       return this.products$.pipe(
           take(1),
-          switchMap(products => this._httpClient.post<InventoryProduct>(this.url + "/ajouter", {}).pipe(
+          switchMap(products => this._httpClient.post<InventoryProduct>(this.url + "/ajouter", {reference : "",
+          nom : "",
+          prix: 0,
+          quantite : 0,
+          categorie: "produit",
+          image : "",
+          offre : 0}).pipe(
               map((newProduct) =>
               {
+                console.log(newProduct);
                   // Update the products with the new product
                   this._products.next([newProduct, ...products]);
 
@@ -157,18 +164,7 @@ export class ProduitService {
                   // Return the updated product
                   return updatedProduct;
               }),
-              switchMap(updatedProduct => this.product$.pipe(
-                  take(1),
-                  filter(item => item && item._id === id),
-                  tap(() =>
-                  {
-                      // Update the product if it's selected
-                      this._product.next(updatedProduct);
-
-                      // Return the updated product
-                      return updatedProduct;
-                  }),
-              )),
+              
           )),
       );
   }
@@ -180,6 +176,7 @@ export class ProduitService {
    */
   deleteProduct(id: string): Observable<boolean>
   {
+    console.log(id);
       return this.products$.pipe(
           take(1),
           switchMap(products => this._httpClient.delete(`${this.url}/${id}`).pipe(
