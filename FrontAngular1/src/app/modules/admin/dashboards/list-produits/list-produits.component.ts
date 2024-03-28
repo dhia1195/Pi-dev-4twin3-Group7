@@ -142,6 +142,8 @@ export class ListProduitsComponent implements OnInit, AfterViewInit, OnDestroy
             .subscribe();
     }
 
+    //hello
+
     /**
      * After view init
      */
